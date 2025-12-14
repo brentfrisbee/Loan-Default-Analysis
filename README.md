@@ -25,6 +25,12 @@ These results indicate that default risk is not evenly distributed across the po
 
 <img width="496" height="445" alt="image" src="https://github.com/user-attachments/assets/cd22b427-1488-4afc-943e-6bf98494c5ff" />
 
+# Risk Score
+
+<img width="418" height="187" alt="image" src="https://github.com/user-attachments/assets/f2dd3c9c-4b5f-47ee-bd9e-48d8453f42d9" />
+
+I used SQL window functions to bucket borrowers into deciles based on credit score, debt-to-income ratio, and income. This allowed me to normalize different financial variables onto a comparable scale and identify relative risk segments across the loan portfolio. The output can be used to build a simple risk scorecard or to analyze default rates across borrower segments.
+
 
 # Recommendations:
 
