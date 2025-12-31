@@ -1,167 +1,167 @@
 select
     count(*) as total_rows
 from
- "Loan_default";
+ Loan_default;
 
  select
     *
 from
-    "Loan_default" 
+    Loan_default
 limit
     10;
 
 select
-    avg("LoanAmount") as avg_loan_amount,
-    avg("Income") as avg_income,
-    avg("CreditScore") as avg_credit_score
+    avg(LoanAmount) as avg_loan_amount,
+    avg(Income) as avg_income,
+    avg(CreditScore) as avg_credit_score
 from
-    "Loan_default";
+    Loan_default;
 
 select
-    count(*) - count("Age") as missing_age,
-    count(*) - count("Income") as missing_income,
-    count(*) - count("LoanAmount") as missing_loan_amount,
-    count(*) - count("CreditScore") as missing_credit_score
+    count(*) - count(Age) as missing_age,
+    count(*) - count(Income) as missing_income,
+    count(*) - count(LoanAmount) as missing_loan_amount,
+    count(*) - count(CreditScore) as missing_credit_score
 from
-    "Loan_default";
+    Loan_default;
 
 select
-    min("CreditScore"),
-    max("CreditScore"),
-    min("InterestRate"),
-    max("InterestRate"),
-    min("DTIRatio"),
-    max("DTIRatio")
+    min(CreditScore),
+    max(CreditScore),
+    min(InterestRate),
+    max(InterestRate),
+    min(DTIRatio),
+    max(DTIRatio)
 from
-    "Loan_default";
+    Loan_default;
 
 select
-    case when "Age" < 25 then 'under 25' 
-        when "Age" between 25 and 34 then '25 - 34'
-        when "Age" between 35 and 44 then '35 - 44'
-        when "Age" between 45 and 54 then '45 - 54'
+    case when Age < 25 then 'under 25' 
+        when Age between 25 and 34 then '25 - 34'
+        when Age between 35 and 44 then '35 - 44'
+        when Age between 45 and 54 then '45 - 54'
         else '55+'
         end as age_group,
     count(*) as count,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by
     1
 order by
     3 desc;
 
 select
-    case when "CreditScore" < 580 then 'poor' 
-        when "CreditScore" < 670 then 'fair' 
-        when "CreditScore" < 740 then 'good' 
+    case when CreditScore < 580 then 'poor' 
+        when CreditScore < 670 then 'fair' 
+        when CreditScore < 740 then 'good' 
         else 'excellent'
         end as credit_bucket,
     count(*) as count,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by
     1
 order by
     3 desc;
 
 select
-    case when "Income" < 40000 then 'low income' 
-        when "Income" between 40000 and 79999 then 'middle income'
+    case when Income < 40000 then 'low income' 
+        when Income between 40000 and 79999 then 'middle income'
         else 'high income'
         end as income_group,
     count(*) as count,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by
     1
 order by
     3 desc;
 
 select
-    case when "InterestRate" < 7 then 'low interest'
-        when "InterestRate" < 16 then 'medium interest'
-        when "InterestRate" between 16 and 25 then 'high interest' 
+    case when InterestRate < 7 then 'low interest'
+        when InterestRate < 16 then 'medium interest'
+        when InterestRate between 16 and 25 then 'high interest' 
         end as rate_type,
     count(*) as loans,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by
     1
 order by
     3 desc;
 
 select
-    case when "LoanAmount" < 50000 then 'small loan'
-        when "LoanAmount" < 125000 then 'medium loan'
+    case when LoanAmount < 50000 then 'small loan'
+        when LoanAmount < 125000 then 'medium loan'
         else 'large loan' 
         end as loan_size,
     count(*) as loans,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by
     1
 order by
     3 desc;
 
 select
-    "LoanPurpose",
+    LoanPurpose,
     count(*) as total_loans,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by 
     1
 order by
     3 desc;
 
 select
-    "EmploymentType",
+    EmploymentType,
     count(*) as total_loans,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by 
     1
 order by
     3 desc;
 
 select
-    "MaritalStatus",
+    MaritalStatus,
     count(*) as total_loans,
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by 
     1
 order by
     3 desc;
 
 select
-    "HasMortgage",
-    "HasCoSigner",
+    HasMortgage,
+    HasCoSigner,
     count(*),
-    avg("Default") * 100 as default_rate
+    avg(Default) * 100 as default_rate
 from
-    "Loan_default"
+    Loan_default
 group by
     1,2
 order by
     4 desc;
 
 select
-    "LoanID",
-    "Age",
-    "CreditScore",
-    "Income",
-    "DTIRatio",
-    "Default",
-    ntile(10) over (order by "CreditScore") as credit_decile,
-    ntile(10) over (order by "DTIRatio") as dti_decile,
-    ntile(10) over (order by "Income") as income_decile
+    LoanID,
+    Age,
+    CreditScore,
+    Income,
+    DTIRatio,
+    Default,
+    ntile(10) over (order by CreditScore) as credit_decile,
+    ntile(10) over (order by DTIRatio) as dti_decile,
+    ntile(10) over (order by Income) as income_decile
 from
-    "Loan_default"
+    Loan_default
