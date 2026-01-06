@@ -32,7 +32,7 @@ These results indicate that default risk is not evenly distributed across the po
 I used SQL window functions to bucket borrowers into deciles based on credit score, debt-to-income ratio, and income. This allowed me to normalize different financial variables onto a comparable scale and identify relative risk segments across the loan portfolio. The output can be used to build a simple risk scorecard or to analyze default rates across borrower segments.
 
 
-# Recommendations:
+# Next Steps:
 
 Based on these findings, I recommend the following risk-mitigation strategies:
 
